@@ -10,7 +10,6 @@ import AuthService from "./utils/auth-service";
 import { createContext, useEffect, useState } from "react";
 import { UserDetails } from "./model/UserDetails";
 import { Navigate } from "react-router-dom";
-//import { useThrowAsyncError } from "./utils/useThrowAsyncError";
 import Header from "./common/header/Header";
 import { Cookies } from "react-cookie";
 import { CircularProgress } from "@mui/material";
@@ -33,7 +32,6 @@ const theme = createTheme({
       default: '#FFFFFF' // Votre couleur de fond personnalisée
     },
   },
-  // ... autres personnalisations du thème si nécessaire
 });
 
 export const UserContext = createContext<UserContextProps>(initialContext);
@@ -42,7 +40,6 @@ function App() {
   //console.log("Debut fonction App");
   const [user, setUser] = useState<UserDetails | null>(null);
   const [loading, setLoading] = useState(true);
-  //const throwAsyncError = useThrowAsyncError();
 
   const cookies = new Cookies();
 
@@ -50,7 +47,6 @@ function App() {
   const initializeUserSession = async () => {
     try {
       if (cookies.get("error")) {
-        //console.log('HERE', cookies.get("error"))
         if (cookies.get("jwt")) {
           cookies.remove("error");
         } else {
@@ -67,9 +63,8 @@ function App() {
       setUser(fetchedUser);
     } catch (error) {
       setUser(null);
-      //throwAsyncError(error);
     } finally {
-      setLoading(false); // Arrêtez le chargement une fois que tout est fini
+      setLoading(false);
     }
   };
 
